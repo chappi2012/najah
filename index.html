@@ -299,6 +299,36 @@ footer strong{color:var(--gold)}
 .btn-reject{padding:.38rem .82rem;background:var(--bad);color:#fff;border:none;border-radius:8px;font-size:.76rem;font-weight:700;cursor:pointer}
 .pending-badge{background:rgba(201,168,76,.18);color:#9A7010;font-size:.64rem;font-weight:700;padding:.18rem .55rem;border-radius:20px;text-transform:uppercase;margin-left:.4rem}
 .empty-pend{text-align:center;color:var(--muted);font-size:.84rem;padding:2rem;background:var(--white);border:1px solid var(--border);border-radius:12px}
+/* ISSUES */
+.iss-wrap{max-width:720px;margin:0 auto}
+.iss-form{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:1.4rem;margin-bottom:1.4rem}
+.iss-form h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;margin-bottom:1rem;color:var(--navy)}
+.iss-field{margin-bottom:.7rem}
+.iss-field label{display:block;font-size:.74rem;font-weight:600;margin-bottom:.24rem;color:var(--muted)}
+.iss-field input,.iss-field select,.iss-field textarea{width:100%;padding:.55rem .8rem;border:1.5px solid var(--border);border-radius:10px;font-family:'Inter',sans-serif;font-size:.86rem;outline:none;background:var(--white);color:var(--navy);transition:border-color .2s}
+.iss-field input:focus,.iss-field select:focus,.iss-field textarea:focus{border-color:var(--gold)}
+.iss-field textarea{resize:vertical;min-height:72px}
+.btn-iss{width:100%;padding:.68rem;background:var(--navy);color:#fff;border:none;border-radius:12px;font-family:'Inter',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;margin-top:.3rem;transition:background .2s}
+.btn-iss:hover{background:#14335A}
+.iss-msg{text-align:center;font-size:.82rem;margin-top:.6rem;padding:.55rem;border-radius:8px;display:none}
+.iss-msg.ok{background:rgba(16,185,129,.1);color:var(--ok);display:block}
+.iss-msg.err{background:rgba(239,68,68,.1);color:var(--bad);display:block}
+.iss-list{display:flex;flex-direction:column;gap:.75rem}
+.iss-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1rem 1.1rem;display:flex;gap:.9rem;align-items:flex-start}
+.iss-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.iss-icon.bug{background:rgba(239,68,68,.12)}
+.iss-icon.suggest{background:rgba(201,168,76,.12)}
+.iss-icon.complaint{background:rgba(124,58,237,.12)}
+.iss-icon.other{background:rgba(107,114,128,.1)}
+.iss-title{font-weight:700;font-size:.9rem;margin-bottom:.2rem}
+.iss-desc{font-size:.78rem;color:var(--muted);line-height:1.55;margin-bottom:.38rem}
+.iss-meta{font-size:.68rem;color:var(--muted)}
+.iss-status{display:inline-block;font-size:.64rem;font-weight:700;padding:.15rem .52rem;border-radius:20px;text-transform:uppercase;margin-left:.35rem}
+.st-open{background:rgba(239,68,68,.12);color:var(--bad)}
+.st-review{background:rgba(201,168,76,.12);color:#9A7010}
+.st-resolved{background:rgba(16,185,129,.12);color:var(--ok)}
+.iss-filter-bar{display:flex;gap:.38rem;flex-wrap:wrap;margin-bottom:1rem}
+.iss-empty{text-align:center;color:var(--muted);font-size:.84rem;padding:2rem;background:var(--white);border:1px solid var(--border);border-radius:12px}
 </style>
 </head>
 <body>
@@ -316,6 +346,7 @@ footer strong{color:var(--gold)}
     <li><a href="#" onclick="go('arts',this);cn()">🌟 Arts Fest</a></li>
     <li><a href="#" onclick="go('sports',this);cn()">⚽ Sports</a></li>
     <li><a href="#" onclick="go('settings',this);cn()">⚙ Settings</a></li>
+    <li><a href="#" onclick="go('issues',this);cn()">🚨 Issues</a></li>
     <li><a href="#" onclick="go('register',this);cn()">✍ Register</a></li>
     <li><a href="#" onclick="go('admin',this);cn()">🔐 Admin</a></li>
   </ul>
@@ -331,6 +362,7 @@ footer strong{color:var(--gold)}
   <button class="tb" onclick="go('arts',this)">🌟 Arts Fest</button>
   <button class="tb" onclick="go('sports',this)">⚽ Sports</button>
   <button class="tb" onclick="go('settings',this)">⚙ Settings</button>
+  <button class="tb" onclick="go('issues',this)">🚨 Issues</button>
   <button class="tb" onclick="go('register',this)">✍ Register</button>
   <button class="tb" onclick="go('admin',this)">🔐 Admin</button>
 </div>
@@ -554,6 +586,49 @@ footer strong{color:var(--gold)}
 </div>
  
  
+<!-- ISSUES -->
+<div class="panel" id="panel-issues">
+  <div class="sh"><div class="gb"></div><h2>Issues & Feedback</h2><p>Report problems, suggest improvements, or raise concerns</p></div>
+  <div class="iss-wrap">
+    <div class="iss-form">
+      <h3>📝 Submit an Issue</h3>
+      <div class="iss-field">
+        <label>Your Name</label>
+        <input id="iss-name" placeholder="Your full name (or anonymous)">
+      </div>
+      <div class="iss-field">
+        <label>Category</label>
+        <select id="iss-cat">
+          <option value="">Select category…</option>
+          <option value="bug">🐛 Bug / Technical Problem</option>
+          <option value="suggest">💡 Suggestion / Improvement</option>
+          <option value="complaint">⚠️ Complaint</option>
+          <option value="other">📌 Other</option>
+        </select>
+      </div>
+      <div class="iss-field">
+        <label>Title</label>
+        <input id="iss-title" placeholder="Short summary of the issue…">
+      </div>
+      <div class="iss-field">
+        <label>Description</label>
+        <textarea id="iss-desc" placeholder="Describe the issue in detail…"></textarea>
+      </div>
+      <button class="btn-iss" onclick="submitIssue()">🚀 Submit Issue</button>
+      <div class="iss-msg" id="iss-msg"></div>
+    </div>
+
+    <div class="sh" style="margin-bottom:.8rem"><h2 style="font-size:1.1rem">Submitted Issues</h2></div>
+    <div class="iss-filter-bar">
+      <button class="fb active" onclick="issFilter('all',this)">All</button>
+      <button class="fb" onclick="issFilter('open',this)">🔴 Open</button>
+      <button class="fb" onclick="issFilter('review',this)">🟡 In Review</button>
+      <button class="fb" onclick="issFilter('resolved',this)">🟢 Resolved</button>
+    </div>
+    <div class="iss-list" id="iss-list"></div>
+  </div>
+</div>
+
 <!-- REGISTER -->
 <div class="panel" id="panel-register">
   <div class="reg-wrap">
@@ -1217,8 +1292,85 @@ function gFilter(f,b){
 // override rGallery to support filter
 const _origRG=rGallery;
  
+// ═══ ISSUES ═══
+let issues = [
+  { id: 1, name: 'Ali Hassan', cat: 'bug', title: 'Points not updating after voting', desc: 'After casting a vote the leaderboard still shows old scores until page refresh.', status: 'open', date: '2025-12-01' },
+  { id: 2, name: 'Sara Khalid', cat: 'suggest', title: 'Add dark mode to gallery', desc: 'The gallery page is too bright in dark mode — would be great if the image grid respected the theme.', status: 'review', date: '2025-12-03' },
+  { id: 3, name: 'Anonymous', cat: 'complaint', title: 'Chat messages disappear on reload', desc: 'All chat history is lost when the page is reloaded. Needs persistent storage.', status: 'open', date: '2025-12-05' },
+];
+let issueIdSeq = 4;
+let issFilterState = 'all';
+
+const issCatIcon = { bug: '🐛', suggest: '💡', complaint: '⚠️', other: '📌' };
+const issCatClass = { bug: 'bug', suggest: 'suggest', complaint: 'complaint', other: 'other' };
+const issStatusLabel = { open: 'Open', review: 'In Review', resolved: 'Resolved' };
+const issStatusClass = { open: 'st-open', review: 'st-review', resolved: 'st-resolved' };
+
+function submitIssue() {
+  const name  = document.getElementById('iss-name').value.trim() || 'Anonymous';
+  const cat   = document.getElementById('iss-cat').value;
+  const title = document.getElementById('iss-title').value.trim();
+  const desc  = document.getElementById('iss-desc').value.trim();
+  if (!cat)   { showIssMsg('err', '❌ Please select a category.'); return; }
+  if (!title) { showIssMsg('err', '❌ Please enter a title.'); return; }
+  if (!desc)  { showIssMsg('err', '❌ Please describe the issue.'); return; }
+  const now = new Date();
+  const dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+  issues.unshift({ id: issueIdSeq++, name, cat, title, desc, status: 'open', date: dateStr });
+  showIssMsg('ok', '✅ Issue submitted! The admin will review it shortly.');
+  document.getElementById('iss-name').value = '';
+  document.getElementById('iss-cat').value = '';
+  document.getElementById('iss-title').value = '';
+  document.getElementById('iss-desc').value = '';
+  rIssues();
+}
+
+function showIssMsg(type, text) {
+  const el = document.getElementById('iss-msg');
+  el.className = 'iss-msg ' + type;
+  el.textContent = text;
+  if (type === 'ok') setTimeout(() => el.className = 'iss-msg', 5000);
+}
+
+function issFilter(state, btn) {
+  issFilterState = state;
+  document.querySelectorAll('.iss-filter-bar .fb').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  rIssues();
+}
+
+function changeIssStatus(id, status) {
+  const iss = issues.find(i => i.id === id);
+  if (iss) { iss.status = status; rIssues(); }
+}
+
+function rIssues() {
+  const el = document.getElementById('iss-list');
+  if (!el) return;
+  const filtered = issFilterState === 'all' ? issues : issues.filter(i => i.status === issFilterState);
+  if (!filtered.length) {
+    el.innerHTML = '<div class="iss-empty">No issues found.</div>';
+    return;
+  }
+  el.innerHTML = filtered.map(i => `
+    <div class="iss-card">
+      <div class="iss-icon ${issCatClass[i.cat]||'other'}">${issCatIcon[i.cat]||'📌'}</div>
+      <div style="flex:1;min-width:0">
+        <div class="iss-title">${i.title}<span class="iss-status ${issStatusClass[i.status]}">${issStatusLabel[i.status]}</span></div>
+        <div class="iss-desc">${i.desc}</div>
+        <div class="iss-meta">🙋 ${i.name} &nbsp;·&nbsp; 📅 ${i.date} &nbsp;·&nbsp;
+          <select style="font-size:.66rem;border:1px solid var(--border);border-radius:6px;padding:.1rem .3rem;outline:none;background:var(--white);color:var(--navy);cursor:pointer" onchange="changeIssStatus(${i.id},this.value)">
+            <option value="open" ${i.status==='open'?'selected':''}>Open</option>
+            <option value="review" ${i.status==='review'?'selected':''}>In Review</option>
+            <option value="resolved" ${i.status==='resolved'?'selected':''}>Resolved</option>
+          </select>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
 // ═══ RENDER ALL ═══
-function renderAll(){rTeams();rLB();rM();rCands();rEvents();rGallery();rAFP();rAFS();rAFG();rMatches();rAdminLists();rPending();upStats();}
+function renderAll(){rTeams();rLB();rM();rCands();rEvents();rGallery();rAFP();rAFS();rAFG();rMatches();rAdminLists();rPending();rIssues();upStats();}
 renderAll();
 go('lb',document.querySelector('.tb.active'));
 </script>
