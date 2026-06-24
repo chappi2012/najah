@@ -269,7 +269,7 @@ footer strong{color:var(--gold)}
   .sch,.scr{grid-template-columns:1fr 1.3fr repeat(4,.58fr);font-size:.66rem;padding:.36rem .55rem}
   .sph2,.spr{grid-template-columns:26px 1fr repeat(5,36px);font-size:.7rem;padding:.36rem .55rem}
 }
- 
+
 /* ── REGISTER & PENDING ── */
 .reg-wrap{max-width:520px;margin:0 auto}
 .reg-hero{background:linear-gradient(135deg,var(--navy),#1a4070);border-radius:16px;padding:2rem 1.5rem;text-align:center;margin-bottom:1.75rem;color:#fff}
@@ -345,14 +345,14 @@ footer strong{color:var(--gold)}
     <div class="hstat"><div class="num" id="st-t">0</div><div class="lbl">Top Score</div></div>
   </div>
 </div>
- 
+
 <!-- TEAMS -->
 <div class="panel" id="panel-teams">
   <div class="sh"><div class="gb"></div><h2>Team Competition</h2><p>Red vs Blue vs Green — live standings</p></div>
   <div class="trow" id="trow"></div>
   <div class="lbw" id="tlb"></div>
 </div>
- 
+
 <!-- LEADERBOARD -->
 <div class="panel active" id="panel-lb">
   <div class="sh"><div class="gb"></div><h2>Points Leaderboard</h2><p>Individual rankings by total points</p></div>
@@ -365,7 +365,7 @@ footer strong{color:var(--gold)}
   </div>
   <div class="lbw"><div class="lbh"><span>#</span><span>Member</span><span>Team</span><span>Role</span><span>Points</span></div><div id="lbrows"></div></div>
 </div>
- 
+
 <!-- MEMBERS -->
 <div class="panel" id="panel-members">
   <div class="sh"><div class="gb"></div><h2>Member Directory</h2><p>Click any card to view & edit profile</p></div>
@@ -378,7 +378,7 @@ footer strong{color:var(--gold)}
   </div>
   <div class="g3" id="mgrid"></div>
 </div>
- 
+
 <!-- PROFILE MODAL -->
 <div class="mo" id="pmo" onclick="cmo(event)">
   <div class="md" onclick="event.stopPropagation()">
@@ -405,19 +405,19 @@ footer strong{color:var(--gold)}
     </div>
   </div>
 </div>
- 
+
 <!-- CANDIDATES -->
 <div class="panel" id="panel-cands">
   <div class="sh"><div class="gb"></div><h2>Candidate Nominations</h2><p>Vote for your class representatives</p></div>
   <div class="g2" id="cgrid"></div>
 </div>
- 
+
 <!-- EVENTS -->
 <div class="panel" id="panel-events">
   <div class="sh"><div class="gb"></div><h2>Events & Announcements</h2><p>Upcoming and past class activities</p></div>
   <div id="elist"></div>
 </div>
- 
+
 <!-- CHAT -->
 <div class="panel" id="panel-chat">
   <div class="sh"><div class="gb"></div><h2>Team Chat</h2><p>Discussions by team channel</p></div>
@@ -434,7 +434,7 @@ footer strong{color:var(--gold)}
     <button class="bsend" onclick="sendChat()">Send</button>
   </div>
 </div>
- 
+
 <!-- GALLERY -->
 <div class="panel" id="panel-gallery">
   <div class="sh"><div class="gb"></div><h2>Photo Gallery</h2><p>🎓 Graduation · 📚 Study · 🏆 Winners · 🎉 Party · ⚽ Sports — upload your real photos!</p></div>
@@ -453,7 +453,35 @@ footer strong{color:var(--gold)}
   </div>
   <div class="gg" id="ggrid"></div>
 </div>
- 
+
+<!-- GALLERY CAPTION FORM MODAL -->
+<div class="mo" id="gal-form-overlay" onclick="if(event.target.id==='gal-form-overlay')closeGalForm()">
+  <div class="md" onclick="event.stopPropagation()" style="max-width:380px">
+    <div class="mdh" style="background:linear-gradient(135deg,#3b0764,#7C3AED)">
+      <button class="mcl" onclick="closeGalForm()">✕</button>
+      <div style="font-size:2rem;margin-bottom:.4rem">📷</div>
+      <div class="mdn" id="gal-form-title">Add Photo with Caption</div>
+    </div>
+    <div class="mdb">
+      <p id="gal-form-filehint" style="display:none;font-size:.76rem;color:var(--muted);background:var(--cream);padding:.6rem;border-radius:8px;margin-bottom:.75rem">ℹ️ This caption will be used for all selected photos (numbered automatically).</p>
+      <div class="pfl"><label>Caption *</label><input id="gal-form-cap" placeholder="e.g. Graduation Ceremony 2026"></div>
+      <div class="pfl"><label>Description (optional)</label><input id="gal-form-sub" placeholder="e.g. Held at the main auditorium"></div>
+      <div class="pfl"><label>Section</label>
+        <select id="gal-form-sec" style="width:100%;padding:.5rem .75rem;border:1px solid var(--border);border-radius:8px;font-family:'Inter',sans-serif;font-size:.8rem;outline:none;background:var(--white);color:var(--navy)">
+          <option value="Graduation">🎓 Graduation</option>
+          <option value="Study">📚 Study Session</option>
+          <option value="Winners">🏆 Winners Cup</option>
+          <option value="Party">🎉 Class Party</option>
+          <option value="Sports">⚽ Sports Day</option>
+          <option value="Arts">🌟 Arts Fest</option>
+          <option value="Other">📌 Other</option>
+        </select>
+      </div>
+      <button class="sbp" onclick="submitGalForm()" style="background:#7C3AED">✅ Add to Gallery</button>
+    </div>
+  </div>
+</div>
+
 <!-- ARTS FEST -->
 <div class="panel" id="panel-arts">
   <div class="afh">
@@ -509,7 +537,7 @@ footer strong{color:var(--gold)}
     </div>
   </div>
 </div>
- 
+
 <!-- SPORTS -->
 <div class="panel" id="panel-sports">
   <div class="sph">
@@ -552,8 +580,8 @@ footer strong{color:var(--gold)}
     </div>
   </div>
 </div>
- 
- 
+
+
 <!-- REGISTER -->
 <div class="panel" id="panel-register">
   <div class="reg-wrap">
@@ -593,7 +621,7 @@ footer strong{color:var(--gold)}
     </div>
   </div>
 </div>
- 
+
 <!-- SETTINGS -->
 <div class="panel" id="panel-settings">
   <div class="sh"><div class="gb"></div><h2>Settings</h2><p>Customize NAJAH Class Union</p></div>
@@ -633,7 +661,7 @@ footer strong{color:var(--gold)}
     </div>
   </div>
 </div>
- 
+
 <!-- ADMIN -->
 <div class="panel" id="panel-admin">
   <div class="lo" id="alo">
@@ -718,7 +746,7 @@ footer strong{color:var(--gold)}
         <div id="pts-set-msg" style="font-size:.74rem;text-align:center;margin-top:.3rem"></div>
       </div>
     </div>
- 
+
     <div class="ac"><h3>🌟 Arts Fest Points</h3>
       <p style="font-size:.72rem;color:var(--muted);margin-bottom:.65rem">Award points to Arts Fest participants</p>
       <div class="af2">
@@ -731,7 +759,7 @@ footer strong{color:var(--gold)}
         <div id="afpts-msg" style="font-size:.74rem;text-align:center;margin-top:.32rem"></div>
       </div>
     </div>
- 
+
     <div class="ac"><h3>⚽ Sports Points</h3>
       <p style="font-size:.72rem;color:var(--muted);margin-bottom:.65rem">Award points to sports athletes</p>
       <div class="af2">
@@ -744,14 +772,14 @@ footer strong{color:var(--gold)}
         <div id="sppts-msg" style="font-size:.74rem;text-align:center;margin-top:.32rem"></div>
       </div>
     </div>
- 
+
     
     <div class="ac" style="grid-column:1/-1">
       <h3>⏳ Pending Registrations <span class="pending-badge" id="pend-count">0 waiting</span></h3>
       <p style="font-size:.72rem;color:var(--muted);margin-bottom:.75rem">Review and approve or reject student registration requests</p>
       <div id="pend-list"><div class="empty-pend">✅ No pending registrations</div></div>
     </div>
- 
+
     <div class="ac"><h3>⚙ Tools</h3>
       <div class="af2">
         <button class="badd" style="width:100%;background:var(--ok)" onclick="exportData()">📤 Export Data (JSON)</button>
@@ -760,9 +788,9 @@ footer strong{color:var(--gold)}
     </div>
   </div>
 </div>
- 
+
 <footer><strong id="fname">NAJAH Class Union</strong> · Academic Year <span id="fyr">2025–2026</span> · All rights reserved</footer>
- 
+
 <script>
 // ═══ DATA ═══
 let PW='3169',unlocked=false;
@@ -771,7 +799,7 @@ const TE={Red:'🟣',Blue:'🔵',Green:'🟢'};
 const CE={Singing:'🎤',Drawing:'🎨',Poetry:'📜',Acting:'🎭',Photography:'📸',Dance:'💃',Calligraphy:'✍','Short Film':'🎬'};
 const SE={Football:'⚽',Basketball:'🏀',Volleyball:'🏐','Table Tennis':'🏓',Running:'🏃'};
 let cfg={name:'NAJAH',year:'2025–2026',prog:'General Program',teams:['Phoenix','Falcon','Warriors']};
- 
+
 let M=[];
 let C=[];
 let E=[];
@@ -908,34 +936,54 @@ function rGallery(){
   if(!gList.length) document.getElementById('ggrid').innerHTML='<div style="grid-column:1/-1;text-align:center;padding:2.5rem;color:var(--muted)"><div style="font-size:2.5rem">📷</div><p style="margin-top:.5rem">No photos in this category yet</p></div>';
 }
 function delGal(i){if(confirm('Remove this photo?')){G.splice(i,1);rGallery();}}
-function addGal(){
-  const c=prompt('Caption (e.g. Graduation Ceremony):');if(!c)return;
-  const s=prompt('Date or description:')||'NAJAH 2025–2026';
-  const sections=['Graduation','Study','Winners','Party','Sports','Arts','Other'];
-  const sec=prompt('Section?\n1=Graduation\n2=Study Session\n3=Winners Cup\n4=Class Party\n5=Sports Day\n6=Arts Fest\n7=Other\n(type number)');
-  const secMap={'1':'Graduation','2':'Study','3':'Winners','4':'Party','5':'Sports','6':'Arts','7':'Other'};
-  const section=secMap[sec]||'Other';
-  const emojis={'Graduation':'🎓','Study':'📚','Winners':'🏆','Party':'🎉','Sports':'⚽','Arts':'🌟','Other':'📌'};
-  G.unshift({emoji:emojis[section]||'📌',cap:c,sub:s,section,img:null});
-  rGallery();
+const SEC_EMOJI={'Graduation':'🎓','Study':'📚','Winners':'🏆','Party':'🎉','Sports':'⚽','Arts':'🌟','Other':'📌'};
+let pendingUploadFiles=null;
+function openCaptionForm(){
+  pendingUploadFiles=null;
+  document.getElementById('gal-form-title').textContent='✏️ Add Photo with Caption';
+  document.getElementById('gal-form-cap').value='';
+  document.getElementById('gal-form-sub').value='';
+  document.getElementById('gal-form-sec').value='Graduation';
+  document.getElementById('gal-form-filehint').style.display='none';
+  document.getElementById('gal-form-overlay').classList.add('open');
 }
 function triggerUpload(){document.getElementById('galfile').click();}
 function handleGalUpload(input){
   const files=Array.from(input.files);
   if(!files.length)return;
-  const sec=prompt('Which section are these photos for?\n1=Graduation\n2=Study Session\n3=Winners Cup\n4=Class Party\n5=Sports Day\n6=Arts Fest\n7=Other\n(type number)');
-  const secMap={'1':'Graduation','2':'Study','3':'Winners','4':'Party','5':'Sports','6':'Arts','7':'Other'};
-  const section=secMap[sec]||'Other';
-  const emojis={'Graduation':'🎓','Study':'📚','Winners':'🏆','Party':'🎉','Sports':'⚽','Arts':'🌟','Other':'📌'};
-  files.forEach(file=>{
-    const cap=file.name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' ');
-    const reader=new FileReader();
-    reader.onload=e=>{G.unshift({emoji:emojis[section],cap,sub:section+' · NAJAH 2025–2026',section,img:e.target.result});rGallery();};
-    reader.readAsDataURL(file);
-  });
+  pendingUploadFiles=files;
+  document.getElementById('gal-form-title').textContent=`🖼 ${files.length} Photo${files.length>1?'s':''} Selected`;
+  document.getElementById('gal-form-cap').value=files[0].name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' ');
+  document.getElementById('gal-form-sub').value='';
+  document.getElementById('gal-form-sec').value='Graduation';
+  document.getElementById('gal-form-filehint').style.display=files.length>1?'block':'none';
+  document.getElementById('gal-form-overlay').classList.add('open');
   input.value='';
 }
-function addGal(){const c=prompt('Caption:');if(!c)return;const s=prompt('Date/description:')||'NAJAH 2025';G.unshift({emoji:GE[Math.floor(Math.random()*GE.length)],cap:c,sub:s});rGallery();}
+function closeGalForm(){document.getElementById('gal-form-overlay').classList.remove('open');pendingUploadFiles=null;}
+function submitGalForm(){
+  const cap=document.getElementById('gal-form-cap').value.trim();
+  const sub=document.getElementById('gal-form-sub').value.trim();
+  const section=document.getElementById('gal-form-sec').value;
+  if(!cap){alert('Please enter a caption.');return;}
+  const finalSub=sub||(section+' · NAJAH 2025–2026');
+  if(pendingUploadFiles&&pendingUploadFiles.length){
+    pendingUploadFiles.forEach((file,idx)=>{
+      const reader=new FileReader();
+      reader.onload=e=>{
+        const thisCap=pendingUploadFiles.length>1?`${cap} ${idx+1}`:cap;
+        G.unshift({emoji:SEC_EMOJI[section],cap:thisCap,sub:finalSub,section,img:e.target.result});
+        rGallery();
+      };
+      reader.readAsDataURL(file);
+    });
+  }else{
+    G.unshift({emoji:SEC_EMOJI[section],cap,sub:finalSub,section,img:null});
+    rGallery();
+  }
+  closeGalForm();
+}
+function addGal(){openCaptionForm();}
 // ═══ ARTS FEST ═══
 function rAFP(){
   const list=afCF==='All'?AFP:AFP.filter(p=>p.cat===afCF);
@@ -1115,10 +1163,10 @@ function awardSPPoints(){
   document.getElementById('sppts-val').value='';
   renderAll();setTimeout(()=>msg.textContent='',4000);
 }
- 
+
 // ═══ REGISTRATION SYSTEM ═══
 let pendingRegs = [];
- 
+
 function submitReg() {
   const name  = document.getElementById('rg-name').value.trim();
   const sid   = document.getElementById('rg-id').value.trim();
@@ -1127,12 +1175,12 @@ function submitReg() {
   const role  = document.getElementById('rg-role').value.trim() || 'Member';
   const bio   = document.getElementById('rg-bio').value.trim() || '';
   const msg   = document.getElementById('reg-msg');
- 
+
   if (!name)  { showRegMsg('err','❌ Please enter your full name.'); return; }
   if (!sid)   { showRegMsg('err','❌ Please enter your Student ID.'); return; }
   if (!phone) { showRegMsg('err','❌ Please enter your phone number.'); return; }
   if (!team)  { showRegMsg('err','❌ Please select your team.'); return; }
- 
+
   // Check duplicate
   if (M.find(m => m.name.toLowerCase() === name.toLowerCase())) {
     showRegMsg('err','❌ A member with this name already exists.'); return;
@@ -1140,21 +1188,21 @@ function submitReg() {
   if (pendingRegs.find(r => r.name.toLowerCase() === name.toLowerCase())) {
     showRegMsg('err','⏳ You already have a pending registration.'); return;
   }
- 
+
   pendingRegs.push({ name, sid, phone, team, role, bio, submittedAt: new Date().toLocaleString() });
   showRegMsg('ok', '✅ Registration submitted! The admin will review it shortly.');
   ['rg-name','rg-id','rg-phone','rg-role','rg-bio'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('rg-team').value = '';
   renderAll();
 }
- 
+
 function showRegMsg(type, text) {
   const el = document.getElementById('reg-msg');
   el.className = 'reg-msg ' + type;
   el.textContent = text;
   if (type === 'ok') setTimeout(() => el.className = 'reg-msg', 5000);
 }
- 
+
 function approveReg(i) {
   const r = pendingRegs[i];
   M.push({ name: r.name, role: r.role, team: r.team, pts: 0, bio: r.bio, phone: r.phone, sid: r.sid, ach: ['✅ Registered Member'] });
@@ -1162,7 +1210,7 @@ function approveReg(i) {
   renderAll();
   alert('✅ ' + r.name + ' has been approved and added to the class!');
 }
- 
+
 function rejectReg(i) {
   const r = pendingRegs[i];
   if (confirm('Reject registration for ' + r.name + '?')) {
@@ -1170,7 +1218,7 @@ function rejectReg(i) {
     renderAll();
   }
 }
- 
+
 function rPending() {
   const el = document.getElementById('pend-list');
   const cnt = document.getElementById('pend-count');
@@ -1197,7 +1245,7 @@ function rPending() {
       </div>
     </div>`).join('');
 }
- 
+
 // ═══ GALLERY FILTER ═══
 function galFilter(sec,btn){
   galSectionFilter=sec;
@@ -1205,7 +1253,7 @@ function galFilter(sec,btn){
   if(btn)btn.classList.add('active');
   rGallery();
 }
- 
+
 // ═══ GALLERY FILTER ═══
 let galF='All';
 function gFilter(f,b){
@@ -1216,7 +1264,7 @@ function gFilter(f,b){
 }
 // override rGallery to support filter
 const _origRG=rGallery;
- 
+
 // ═══ RENDER ALL ═══
 function renderAll(){rTeams();rLB();rM();rCands();rEvents();rGallery();rAFP();rAFS();rAFG();rMatches();rAdminLists();rPending();upStats();}
 renderAll();
